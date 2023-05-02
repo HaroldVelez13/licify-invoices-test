@@ -6,17 +6,13 @@ const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./app/config/swagger.json");
 
-const corsOptions = {
-  origin: "*",
-};
-
-app.use(cors(corsOptions));
-
 // parse requests of content-type - application/json
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
 
 app.use(
   cookieSession({
