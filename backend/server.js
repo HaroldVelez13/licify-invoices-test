@@ -11,6 +11,21 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
+// Cors
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-credentials", "true");
+  res.header("Acces-Control-Allow-Origin", "*");
+  res.header(
+    "Acces-Control-Allow-Header",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-CSRF-Token"
+  );
+  res.header(
+    "Acces-Control-Allow-Methods",
+    "GET,OPTIONS, POST, DELETE, PUT, PATCH"
+  );
+
+  next();
+});
 
 app.use(
   cors({
