@@ -1,3 +1,3 @@
 export const environment = {
-    URL_API: 'http://localhost:8080/api'
+    URL_API: 'https://licify-invoices-test-production.up.railway.app/api'
 };
