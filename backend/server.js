@@ -10,7 +10,11 @@ const swaggerFile = require("./app/config/swagger.json");
 
 app.use(
   cors({
-    origin: "https://licify-invoices-test.vercel.app",
+    allowedHeaders: ["sessionId", "Content-Type"],
+    exposedHeaders: ["sessionId"],
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
   })
 );
 // parse requests of content-type - application/json
