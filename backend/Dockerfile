@@ -4,8 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package.json .
 
-RUN npm install \
-    npm install --only=dev --silent 
+RUN npm install --silent 
 
 COPY . .
 
