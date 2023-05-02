@@ -6,17 +6,6 @@ const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./app/config/swagger.json");
 
-// Cors
-
-app.use(
-  cors({
-    allowedHeaders: ["sessionId", "Content-Type"],
-    exposedHeaders: ["sessionId"],
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-  })
-);
 // parse requests of content-type - application/json
 app.use(express.json());
 
@@ -27,9 +16,12 @@ app.use(
   cookieSession({
     name: "licify-session",
     secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: true,
+    httpOnly: false,
   })
 );
+
+// Cors
+app.use(cors());
 
 const db = require("./app/models");
 const Role = db.role;
