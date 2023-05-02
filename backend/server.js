@@ -25,6 +25,7 @@ app.use(
 const db = require("./app/models");
 const Role = db.role;
 
+console.log("DB_URL: ", DB_URL);
 db.mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
