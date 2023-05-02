@@ -1,13 +1,13 @@
-FROM node:18-alpine
+FROM node:latest
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+COPY package.json /usr/src/app
 
-RUN npm install -g nodemon \
-    npm install \
-    npm install --only=dev --silent 
+RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
+
+CMD ["node", "server.js"]
