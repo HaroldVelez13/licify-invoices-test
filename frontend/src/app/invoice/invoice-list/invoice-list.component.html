@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-sm-12 col-lg-8">
+        <div class="list-group mt-5">
+            <div class="list-group-item list-group-item-action active" aria-current="true">
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                        <h2>List Invoices</h2>
+                    </div>
+                    <div class="col-4">
+                        <a routerLink="/invoice/create" class="btn btn-light mx-2 rounded-circle float-right">
+                            <i i-bs name="plus-lg" width="20" height="20">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item list-group-item-action ">
+                <div class="d-flex" role="search" novalidate>
+                    <input type="text" class="form-control me-sm-2 py-4 " type="search"
+                        placeholder="Search by reference" aria-label="Search" [(ngModel)]="reference" />
+                    <button class="btn btn-secondary  rounded-circle" (click)="searchRef()">
+                        <i i-bs name="search">
+                        </i>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <div class="list-group-item list-group-item-action d-flex justify-content-between align-invoices-start mt-2"
+                *ngFor="let invoice of invoices; let i = index" [class.active]="i == currentIndex"
+                (click)="setActiveInvoice(invoice, i)">
+                <div>
+
+                    <p class="fw-bold fs-5 text-capitalize mb-0">
+                        {{invoice.isPaid?"Canceled":"Pending"}}
+                    </p>
+                    <p class="fs-6  mb-0">
+                        <b>Ref:</b> {{invoice.references}}
+                    </p>
+                    <p class="fs-6  mb-0">
+                        <b>Date:</b> {{invoice.createdAt | date}}
+                    </p>
+                    <p class="fs-6  mb-0">
+                        <b>Total:</b> ${{invoice.priceTotal}}
+                    </p>
+
+                </div>
+                <i-bs name="eye-fill" class="text-primary" width="30" height="30">
+                </i-bs>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12 col-lg-4 mb-5" *ngIf="currentInvoice._id">
+        <app-invoice-detail [viewMode]="true" [currentInvoice]="currentInvoice"></app-invoice-detail>
+
+        <button class="btn btn-Light btn-block" (click)="clearActiveInvoice()">
+            Close
+        </button>
+    </div>
+</div>

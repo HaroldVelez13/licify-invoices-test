@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-lg-8">
+    <div class="card">
+      <h5 class="card-title text-center fs-2 text-capitalize">Profile</h5>
+      <div class="card-body">
+
+        <p class="fs-3 text-capitalize mb-0">{{currentUser.username }}</p>
+        <p class="card-text fs-5 my-0">
+          {{ currentUser.email }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

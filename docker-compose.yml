@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database/data:/data/db
+
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    command: npm run dev
+    environment:
+      - MONGODB_URI=mongodb://database/licifyInvoice
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - database 
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "8081:8081"
+    command: ng serve --host 0.0.0.0
+    environment:
+      - URL_API=http/localhost:8080/api
+    volumes:
+      - ./frontend:/usr/src/app
+    depends_on:
+      - backend

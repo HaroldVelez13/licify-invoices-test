@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid ">
+    <a class="navbar-brand h5" href="#">
+      <img src="../assets/logo.png" alt="Bootstrap" width="100" height="30">
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapseExample" [ngbCollapse]="isCollapsed">
+
+      <ul class="navbar-nav " routerLinkActive="active" *ngIf="isLoggedIn">
+        <li class="nav-item h5">
+          <a href="/profile" class="nav-link" routerLink="/profile">
+            Profile
+            <b i-bs name="person-circle">
+            </b>
+          </a>
+        </li>
+        <li class="nav-item h5">
+          <a href="/items" class="nav-link" routerLink="/items">
+            Items
+            <b i-bs name="tools">
+            </b>
+          </a>
+        </li>
+        <li class="nav-item h5">
+          <a href="/invoices" class="nav-link" routerLink="/invoices">
+            Invoices
+            <b i-bs name="clipboard-fill">
+            </b>
+          </a>
+        </li>
+        <li class="nav-item h5">
+          <a href class="nav-link" (click)="logout()" title="Logout">
+            Logout
+            <b i-bs name="arrow-right-circle-fill">
+            </b>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav" *ngIf="!isLoggedIn">
+        <li class="nav-item h5">
+          <a href="/register" class="nav-link" routerLink="register">
+            Register
+            <b i-bs name="person-plus-fill">
+            </b>
+          </a>
+        </li>
+        <li class="nav-item h5">
+          <a href="/login" class="nav-link" routerLink="login">
+            Login
+            <b i-bs name="person-heart">
+            </b>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container-lg">
+  <router-outlet></router-outlet>
+</div>

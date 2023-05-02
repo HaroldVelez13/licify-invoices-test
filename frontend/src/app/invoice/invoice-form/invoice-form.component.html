@@ -1,0 +1,35 @@
+<div class="card card-container">
+    <h5 class="card-title text-center h3">Invoice Creation</h5>
+    <form class="submit-form" #f="ngForm" novalidate>
+        <div *ngIf="!submitted">
+            <ul class="list-group">
+                <li class="list-group-item active fs-3">
+                    List Items
+                </li>
+                <li class="list-group-item px-4 fs-5" *ngFor="let item of listItems; let i = index">
+                    <input class="form-check-input " type="checkbox" value="" id="{{item._id}}"
+                        (click)="checkItem($event,item._id??'')">
+                    <label class="form-check-label ml-3 " for="{{item._id}}">{{item.name}}</label>
+                </li>
+            </ul>
+            <div class="form-check  form-check-reverse fs-3 mt-3">
+                <label for="isPaid">{{invoice.isPaid?"Canceled":"Pending"}}</label>
+                <input type="checkbox" class="form-check-input ml-2" role="switch" id="isPaid" required
+                    [(ngModel)]="invoice.isPaid" name="isPaid" />
+            </div>
+            <div class="form-group mt-5">
+                <button [disabled]="!invoice.items?.length" (click)="saveInvoice()"
+                    class="btn btn-success btn-block">Add</button>
+            </div>
+        </div>
+
+        <div class="mt-3" *ngIf="submitted">
+            <h4>Invoice was created successfully!</h4>
+            <button class="btn btn-primary btn-block" (click)="newIvoice()">Add Other</button>
+        </div>
+        <div class="mt-3">
+            <a routerLink="/invoices" class="btn btn-light btn-block">Invoices List</a>
+        </div>
+    </form>
+
+</div>
