@@ -1,10 +1,11 @@
-FROM node:latest
+FROM node:18
 
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app
+COPY package.json .
 
-RUN npm install
+RUN npm install \
+    npm install --only=dev --silent 
 
 COPY . .
 
