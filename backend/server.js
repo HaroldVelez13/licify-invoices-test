@@ -6,6 +6,9 @@ const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./app/config/swagger.json");
 
+// Cors
+app.use(cors({ origin: "https://licify-invoices-test.vercel.app/" }));
+
 // parse requests of content-type - application/json
 app.use(express.json());
 
@@ -18,11 +21,6 @@ app.use(
     secret: "COOKIE_SECRET", // should use as secret environment variable
     httpOnly: true,
   })
-);
-
-// Cors
-app.use(
-  cors({ origin: "https://licify-invoices-test.vercel.app", credentials: true })
 );
 
 const db = require("./app/models");
