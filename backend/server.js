@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-const { DB_URL } = require("./app/config/db.config");
+const { DB_URL, ORIGIN_URL, APP_PORT } = require("./app/config/db.config");
 const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./app/config/swagger.json");
 
 const corsOptions = {
-  origin: ["http://localhost:8081"],
+  origin: [ORIGIN_URL],
   credentials: true,
 };
 
@@ -56,7 +56,7 @@ require("./app/routes/item.routes")(app);
 require("./app/routes/invoice.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.APP_PORT || 8080;
+const PORT = APP_PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
