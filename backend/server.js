@@ -16,12 +16,14 @@ app.use(
   cookieSession({
     name: "licify-session",
     secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: false,
+    httpOnly: true,
   })
 );
 
 // Cors
-app.use(cors());
+app.use(
+  cors({ origin: "https://licify-invoices-test.vercel.app", credentials: true })
+);
 
 const db = require("./app/models");
 const Role = db.role;
