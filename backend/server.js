@@ -10,9 +10,13 @@ const swaggerFile = require("./app/config/swagger.json");
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(
   cookieSession({
@@ -25,7 +29,6 @@ app.use(
 const db = require("./app/models");
 const Role = db.role;
 
-console.log("DB_URL: ", DB_URL);
 db.mongoose
   .connect(DB_URL, {
     useNewUrlParser: true,
