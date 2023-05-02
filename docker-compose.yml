@@ -11,7 +11,7 @@ services:
 
 
   backend:
-    build: ./backend/Dockerfile.dev
+    build: ./backend
     ports:
       - "8080:8080"
     command: npm run dev
